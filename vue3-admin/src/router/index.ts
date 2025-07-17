@@ -1,15 +1,15 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import type { App } from 'vue'
 import base from './base' // 基础路由
-import user from './user' // 用户路由
 import tools from './tools' // 工具路由
+import autoload from './autoload' // 自动加载路由
 
 const router = createRouter({
   history: createWebHistory(),
   routes: [
     ...base,
-    ...user,
-    ...tools
+    ...tools,
+    ...autoload
   ]
 })
 
