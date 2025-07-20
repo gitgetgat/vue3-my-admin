@@ -1,27 +1,21 @@
 import path from "path"
-import tailwindcss from "@tailwindcss/vite"
-import { loadEnv, defineConfig, ConfigEnv } from 'vite'
-import vue from '@vitejs/plugin-vue'
+import { loadEnv } from 'vite'
+import type { ConfigEnv } from 'vite'
 import alias from './vite/alias'
+import { parseEnv } from './vite/utils'
+import setupVitePlugins from './vite/plugins'
 
 // https://vite.dev/config/
-// export default defineConfig({
-//   plugins: [vue(), tailwindcss()],
-//   resolve: {
-//     alias: {
-//       "@": path.resolve(__dirname, "./src"),
-//       "@layoputs": path.resolve(__dirname, "./src/layouts"), // 布局
-//       "@views": path.resolve(__dirname, "./src/views"), // 页面
-//     },
-//   },
-// })
-
-
 export default ({ mode, command }: ConfigEnv) => {
+  const isBuild = command === 'build' // 是否为构建命令
   const env = loadEnv(mode, process.cwd())
   console.log(mode, command, env)
+  console.log(parseEnv(env));
+  // 使用parseEnv处理环境变量并覆盖原有的env
+  const parsedEnv = parseEnv(env);
+
   return {
-    plugins: [vue(), tailwindcss()],
+    plugins: setupVitePlugins(isBuild, parsedEnv),
     resolve: {
       alias,
     },

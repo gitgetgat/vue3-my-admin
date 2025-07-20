@@ -1,8 +1,8 @@
 import type { RouteRecordRaw } from 'vue-router'
 import type { DefineComponent } from 'vue'
+import helper from '../../vite/utils';
 
-
-const AUTO_LOAD_ROUTE = true
+const AUTO_LOAD_ROUTE = helper.env.VITE_AUTO_LOAD_ROUTE
 const layoutModules = import.meta.glob('../layouts/*.vue')
 const views = import.meta.glob('../views/**/*.vue')
 
