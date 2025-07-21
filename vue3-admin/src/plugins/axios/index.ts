@@ -6,13 +6,22 @@ class Axios {
     this.instance = axios.create(config)
     this.interceptors()
   }
-  public request<T>(config: AxiosRequestConfig) {
-    return this.instance.request<ResponseResult<T>>()
+
+  public request<T, R = ResponseResult<T>>(config: AxiosRequestConfig): Promise<R> {
+    return new Promise<R>((resolve, reject) => {
+      this.instance.request<R>(config).then(res => {
+        resolve(res.data)
+      }).catch(err => {
+        reject(err)
+      })
+    })
   }
+
   private interceptors() {
     this.requestInterceptor()
     this.responseInterceptor()
   }
+
   private requestInterceptor() {
     this.instance.interceptors.request.use(
       (config) => {
@@ -22,6 +31,7 @@ class Axios {
       }
     );
   }
+
   private responseInterceptor() {
     this.instance.interceptors.response.use(
       (response) => {

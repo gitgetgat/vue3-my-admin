@@ -2,13 +2,15 @@
 import type { MockMethod, MockConfig } from 'vite-plugin-mock'
 export default [
   {
-    url: '/api/get',
+    url: '/user/info',
     method: 'get',
     response: ({ query }) => {
       return {
         code: 0,
         data: {
-          name: 'vben',
+          id: 1,
+          username: 'vben',
+          realname: 'Vben',
         },
       }
     },
