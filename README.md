@@ -1,33 +1,39 @@
 # vue3-my-admin
 
-## 功能模块
+# node-express-apis
 
-### 用户管理
+## sequelize 命令
 
-- 登录注册
-- 密码修改
-- 用户信息管理
-- 权限管理
-- 角色管理
+### 安装依赖包
 
-### 博客管理
+`npm i sequelize mysql2`
 
-- 博客列表
-- 博客详情
-  - 博客创建
-  - 博客编辑
-  - 博客删除
+### 初始化项目
 
-### 工具模块
+`sequelize init`
 
-- 工具列表
-- 工具详情
+### 创建数据库
 
-### 代码块管理
+`sequelize db:create --charset utf8mb4 --collate utf8mb4_unicode_ci`
 
-- 代码块管理
-- 代码块列表
-  - 代码块详情
-  - 代码块创建
-  - 代码块编辑
-  - 代码块删除
+### 创建模型
+
+`sequelize model:generate --name Article --attributes title:string,content:text`
+
+### 运行迁移文件
+
+`sequelize db:migrate`
+
+### 创建种子文件
+
+`sequelize seed:generate --name article`
+
+### 运行指定种子
+
+#### --seed 后是种子文件名（不含后缀），例如种子文件名是 20250802061028-article.js
+
+`sequelize db:seed --seed 20250802061028-article`
+
+### 运行所有种子
+
+`sequelize db:seed:all`
