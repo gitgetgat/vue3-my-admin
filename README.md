@@ -20,9 +20,25 @@
 
 `sequelize model:generate --name Article --attributes title:string,content:text`
 
-### 运行迁移文件
+### 查看迁移状态
+
+`sequelize db:migrate:status`
+
+### 运行所有迁移文件
 
 `sequelize db:migrate`
+
+### 运行指定迁移文件
+
+`sequelize db:migrate --name 20250802061028-article.js`
+
+### 运行当前状态到指定迁移文件的所有迁移
+
+`sequelize db:migrate --to 20250802061028-article.js`
+
+### 查看迁移文件状态
+
+`sequelize db:migrate:status`
 
 ### 创建种子文件
 
@@ -37,3 +53,19 @@
 ### 运行所有种子
 
 `sequelize db:seed:all`
+
+### 回滚迁移文件
+
+`sequelize db:migrate:undo`
+
+### 回滚所有迁移文件
+
+`sequelize db:migrate:undo:all`
+
+### 回滚指定迁移文件
+
+`sequelize db:migrate:undo --to 20250802061028-article.js`
+
+### 先撤销再运行指定迁移文件
+
+`sequelize db:migrate:undo --to 20250802061028-article.js && sequelize db:migrate --name 20250802061028-article.js`
